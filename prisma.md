@@ -15,32 +15,34 @@ This is the first step in using Pirsma with node.js .To do this you will need to
 
 To install prisma you are required to run this particular command in your terminal.
 
----bash
+```bash
 npm install prisma -D
----
+```
 
 and also
 
----bash
+```bash
 npm install prisma --save-dev
----
+```
   Also we need to create a **.json** file in our project by running 
-  ---bash 
+```bash 
   npm init -y
-  ---
+  ```
 
 Next part is setting up the project .
 Doing this you need to run a command and also give a name to your database
 
----bash
+```bash
 npx prisma init --datasource-provider Database
----
+```
 
 example.
 npx prisma init --datasource-provider postgresql
 
 The command above will create a .env file, the .env file is used in defining the environment variables, easy define of changes and also keeps sensitive data.
 Also easy in matters of deployment.
+
+Remember to visit .env file and set username and password.
 
 ## 2. Models in prisma
 The data model definition part of the Prisma schema defines your application models (also called Prisma models). 
@@ -54,7 +56,8 @@ Models:
 ### models concept 
 1. Field Types (Data Types)
 In Prisma, field types define what kind of data each field can store. For your examples:
----prisma
+
+```js
 model User {
   id        Int     @id @default(autoincrement())
   title     String?  // Optional string field
@@ -63,11 +66,11 @@ model User {
   age       Int?     // Optional number field
   isActive  Boolean @default(true) // Boolean with default
 }
----
+```
 2. Data Models
 These represent your application's entities/tables. The "normal data" would be the regular fields in your models:
 
----prisma
+```js
 model Post {
   id        Int     @id @default(autoincrement())
   title     String
@@ -75,11 +78,11 @@ model Post {
   published Boolean @default(false)
   createdAt DateTime @default(now())
 }
----
+```
 3. Relations
 Prisma supports different types of relationships between models:
 
----prisma
+```js
 model User {
   id    Int    @id @default(autoincrement())
   posts Post[]  // One-to-many relation
@@ -90,11 +93,11 @@ model Post {
   author   User @relation(fields: [authorId], references: [id]) // Many-to-one
   authorId Int  // Relation scalar field
 }
----
+```
 4. Attributes
 These are special annotations that modify fields or models:
 
----prisma
+```js
 model Product {
   id          Int     @id @default(autoincrement())
   name        String  @unique
@@ -106,4 +109,17 @@ model Product {
   @@index([name]) // Creates an index
   @@unique([name, price]) // Composite unique constraint
 }
----
+```
+
+## migration
+Prisma Migrate is a powerful database migration tool that integrates with the Prisma schema for data modeling. It allows you to manage your database schema changes in a deterministic and repeatable manner.
+
+Example
+
+To create a new migration, you can use the following command:
+```bash
+npx prisma migrate dev --name init
+```
+This command will generate a new migration file based on the changes in your Prisma schema.
+Remember that if a single change is made of a file one must run migtration to update changes.
+
