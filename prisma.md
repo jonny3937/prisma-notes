@@ -5,7 +5,19 @@ Prisma in matters of understanding one must know the following key areas
 - setting up a prisma project
 - Defining a data model
 - Quering the database
-- Interacting with CRUD
-            1. Create
-            2. Update
-            3. Delete
+- Interacting with CRUD (Create, Update & Delete).
+
+
+## 1. Setting up a prisma project
+This is the first step in using Pirsma with node.js .To do this you will need to install prisma to your command line interface. Which provides a convenient way to manage your Prisma projects and generate code.
+
+ **NOTE**You are required to install it as an NPM package.
+
+To install prisma you are required to run this particular command in your terminal.
+
+npm install prisma -D
+
+
+
+
+
