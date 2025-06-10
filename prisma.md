@@ -59,10 +59,10 @@ In Prisma, field types define what kind of data each field can store. For your e
 ```js
 model User {
   id        Int     @id @default(autoincrement())
-  title     String?  // Optional string field
-  name      String   // Required string field
-  occupation String? // Optional string field
-  age       Int?     // Optional number field
+  title     String?  // Optional string 
+  name      String   // Required string
+  occupation String? // Optional string
+  age       Int?     // Optional number 
   isActive  Boolean @default(true) // Boolean with default
 }
 ```
@@ -124,7 +124,7 @@ model User {
 model Post {
   id       Int  @id @default(autoincrement())
   author   User @relation(fields: [authorId], references: [id]) // Many-to-one
-  authorId Int  // Relation scalar field
+  authorId Int  
 }
 ```
 4. Attributes
@@ -139,8 +139,8 @@ model Product {
   createdAt   DateTime @default(now()) @updatedAt
   isFeatured  Boolean @default(false)
   
-  @@index([name]) // Creates an index
-  @@unique([name, price]) // Composite unique constraint
+  @@index([name]) 
+  @@unique([name, price]) 
 }
 ```
 
